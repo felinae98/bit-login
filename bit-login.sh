@@ -3,7 +3,7 @@
 function test_connection {
     curl --connect-timeout 0.1 10.0.0.55 -I -s| grep SRunFlag > /dev/null
     if [[ $? != 0 ]]; then
-        echo 'you are unable to connect 10.0.0.55, plz check your connection'
+        echo >&2 'you are unable to connect 10.0.0.55, plz check your connection'
         exit 1
     fi
 } 
@@ -28,9 +28,9 @@ test_connection
 get_connection_info
 check_wireless
 
-echo "you are using $interface"
-echo "your local ip is $device_ip"
+echo "you are using [$interface]"
+echo "your local ip is [$device_ip]"
 if [[ $wireless == 1 ]]; then
     echo "you are using wlan"
-    echo "your ssid is $ssid"
+    echo "your ssid is [$ssid]"
 fi
